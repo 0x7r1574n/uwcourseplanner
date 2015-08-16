@@ -35,8 +35,8 @@ def format_text(text):
 
 def record(fullname, dept, num, title):
     payload = {'fullname': fullname, 'dept': dept, 'num': num, 'title': title}
-    r = requests.post('http://52.27.91.71/post', json=json.dumps(payload))
-    print(r.status_code)
+    r = requests.post('http://52.27.91.71/post/', json=json.dumps(payload))
+    print(fullname, r.status_code)
 
 
 def main():
