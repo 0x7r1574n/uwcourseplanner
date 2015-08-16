@@ -28,7 +28,7 @@ def format_text(text):
     parts = text.split()
     dept = parts[0]
     num = parts[1]
-    fullname = dept.tolower()+num
+    fullname = dept.lower()+num
     title = text[len(dept)+len(num)+1:text.index('(')]
     record(fullname, dept, num, title)
 
@@ -36,3 +36,9 @@ def format_text(text):
 def record(fullname, dept, num, title):
     payload = {'fullname': fullname, 'dept': dept, 'num': num, 'title': title}
     r = requests.post('52.27.91.71/update', json=json.dumps(payload))
+
+
+def main():
+    get_courses(get_urls())
+
+main()
