@@ -4,8 +4,7 @@
 {% block content %}
 	{% for course in courses %}
 		<div class="course">
-			<p class = "course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.title }}</a>
-			<p>{{ course.credits }}</p>
+			<p class = "course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.fullName }}</a> - {{ course.credit }} CR</p>
 		</div>
 	{% endfor %}
 {% endblock content %}

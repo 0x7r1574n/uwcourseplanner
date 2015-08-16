@@ -12,7 +12,7 @@
 	<body>
 		{% if user.is_authenticated %}
 			<p>Hello {{ user.username }}<small>(<a href="{% url "django.contrib.auth.views.logout" %}">Log out</a>)</small></p>
-			<a href="{% url "course_add" %}">Add a Course</a>
+			<a href="{% url "course_new" %}">Add a Course</a>
 			<br>
 		{% else %}
 			<a href="{% url "django.contrib.auth.views.login" %}">Log in</a>

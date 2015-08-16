@@ -1,13 +1,10 @@
 {% extends "planner/base.html" %}
 
 {% block content %}
-	<p>Full Name: <b><a href="{{ course.original }}">{{ course.original }}</a></b></p>
-	<p>Credits: <b><a href="{{ course.destination }}">{{ course.destination }}</a></b></p>
-	<p>HTTP Status: <b>{{ course.httpstatus }}</b></p>
-	<p>Title: <b>{{ course.title }}</b></p>
-	<form>
-		<button type="submit" formaction="{% url 'course_remove' pk=url.pk %}">
-			Remove
-		</button>
-	</form>
+	<div class="course-detail">
+		<p>Full Name: <b>{{ course.fullName }}</b></p>
+		<p>Title: <b>{{ course.title }}</b></p>
+		<p>Credits: <b>{{ course.destination }}</b></p>
+		<p>Description: <b>{{ course.httpstatus }}</b></p>
+	</div>
 {% endblock content %}
