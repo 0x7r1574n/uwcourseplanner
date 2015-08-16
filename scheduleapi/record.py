@@ -8,7 +8,7 @@ BASE_URL = 'http://www.washington.edu/students/crscat/'
 def get_urls():
     urls = []
     r = requests.get(BASE_URL)
-    soup = bs4.BeautifulSoup(r.text)
+    soup = bs4.BeautifulSoup(r.text, "html.parser")
     for link in soup.find_all('a'):
         a = str(link.get('href'))
         if not (a.startswith('http') or a.startswith('/')) and a.endswith('html'):
@@ -19,7 +19,7 @@ def get_urls():
 def get_courses(urls):
     for url in urls:
         r = requests.get(BASE_URL+url)
-        soup = bs4.BeautifulSoup(r.text)
+        soup = bs4.BeautifulSoup(r.text, "html.parser")
         for text in soup.find_all('b'):
             format_text(text.text)
 
@@ -35,7 +35,8 @@ def format_text(text):
 
 def record(fullname, dept, num, title):
     payload = {'fullname': fullname, 'dept': dept, 'num': num, 'title': title}
-    r = requests.post('52.27.91.71/update', json=json.dumps(payload))
+    r = requests.post('http://52.27.91.71/post', json=json.dumps(payload))
+    print(r.status_code)
 
 
 def main():
