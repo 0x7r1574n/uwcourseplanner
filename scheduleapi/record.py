@@ -1,7 +1,9 @@
 import requests
 import bs4
+import json
 
 BASE_URL = 'http://www.washington.edu/students/crscat/'
+
 
 def get_urls():
     urls = []
@@ -26,10 +28,11 @@ def format_text(text):
     parts = text.split()
     dept = parts[0]
     num = parts[1]
+    fullname = dept.tolower()+num
     title = text[len(dept)+len(num)+1:text.index('(')]
-    credit = text[text.index('(')+1]
-    record(dept, num, title, credit)
+    record(fullname, dept, num, title)
 
 
-def record(dept, num, title, credit):
-    pass
+def record(fullname, dept, num, title):
+    payload = {'fullname': fullname, 'dept': dept, 'num': num, 'title': title}
+    r = requests.post('52.27.91.71/update', json=json.dumps(payload))
