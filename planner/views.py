@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 
 
 def course_list(request):
-    courses = Course.objects.filter(author=user).order_by('year')
+    courses = Course.objects.filter(author=me).order_by('year')
     year1 = courses.filter(year=1)
     y1q1 = year1.filter(quarter=1)
     y1q2 = year1.filter(quarter=2)
