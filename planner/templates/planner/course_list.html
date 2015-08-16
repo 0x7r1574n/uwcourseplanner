@@ -1,0 +1,10 @@
+{% extends "planner/base.html" %}
+
+{% block content %}
+	{% for course in courses %}
+		<div>
+			<h1><a href="{% url "course_detail" pk=post.pk %}">{{ course.title }}</a></h1>
+			<p>{{ course.credits }}</p>
+		</div>
+	{% endfor %}
+{% endblock content %}

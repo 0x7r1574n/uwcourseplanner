@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>UW Course Planner</title>
+		<meta name="description" content="UW Course Planner is a tool for visualizing your degree progress and planning your course trajectory. ">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		{% if user.is_authenticated %}
+			<p>Hello {{ user.username }}<small>(<a href="{% url "django.contrib.auth.views.logout" %}">Log out</a>)</small></p>
+			<a href="{% url "course_add" %}">Add a Course</a>
+			<br>
+		{% else %}
+			<a href="{% url "django.contrib.auth.views.login" %}">Log in</a>
+		{% endif %}
+
+		<h2><a href="/uwcourseplanner">UW Course Planner</a></h2>
+		<br>
+
+		{% block content %}
+		{% endblock %}
+
+	</body>
+</html>
