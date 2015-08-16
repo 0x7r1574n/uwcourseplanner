@@ -18,7 +18,7 @@ def course_new(request):
             course = form.save(commit=False)
             course.author = request.user
             course.save()
-            return redirect('planner.views.course_detail', pk=post.pk)
+            return redirect('planner.views.course_detail', pk=course.pk)
     else:
         form = CourseForm()
     return render(request, 'planner/course_edit.html', {'form': form})
@@ -31,7 +31,12 @@ def course_edit(request, pk):
             course = form.save(commit=False)
             course.author = request.user
             course.save()
-            return redirect('planner.views.course_detail', pk=post.pk)
+            return redirect('planner.views.course_detail', pk=course.pk)
     else:
         form = CourseForm()
     return render(request, 'planner/course_edit.html', {'form': form})
+
+def course_remove(request, pk):
+	course = get_object_or_404(Course, pk=pk)
+	course.delete()
+	return redirect('planner.views.url_list')
