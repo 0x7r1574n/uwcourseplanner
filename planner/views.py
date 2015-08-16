@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post
+from .models import Course
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm
+from .forms import CourseForm
 from django.shortcuts import redirect
 # Create your views here.
 
@@ -39,8 +39,8 @@ def course_edit(request, pk):
 def course_remove(request, pk):
 	course = get_object_or_404(Course, pk=pk)
 	course.delete()
-	return redirect('planner.views.url_list')
-    
+	return redirect('planner.views.course_list')
+
 def course_detail(request, pk):
 	course = get_object_or_404(Course, pk=pk)
 	return render(request, 'planner/course_detail.html', {'course': course})
