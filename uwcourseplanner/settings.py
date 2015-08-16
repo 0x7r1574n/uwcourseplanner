@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'planner',
+    'scheduleapi',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,9 +81,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'degreemap',
         'USER': 'admin',
-	    'PASSWORD': 'admin',
-	    'HOST': 'localhost',
-	    'PORT': '',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
