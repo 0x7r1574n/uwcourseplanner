@@ -23,8 +23,8 @@ def course_new(request):
         form = CourseForm()
     return render(request, 'planner/course_edit.html', {'form': form})
 
-def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def course_edit(request, pk):
+    course = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = CourseForm(request.POST)
         if form.is_valid():
