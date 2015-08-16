@@ -40,3 +40,7 @@ def course_remove(request, pk):
 	course = get_object_or_404(Course, pk=pk)
 	course.delete()
 	return redirect('planner.views.url_list')
+    
+def course_detail(request, pk):
+	course = get_object_or_404(Course, pk=pk)
+	return render(request, 'planner/course_detail.html', {'course': course})

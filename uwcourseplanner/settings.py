@@ -79,10 +79,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'degreemap',
-	'USER': 'admin',
-	'PASSWORD': 'admin',
-	'HOST': 'localhost',
-	'PORT': '',
+        'USER': 'admin',
+	    'PASSWORD': 'admin',
+	    'HOST': 'localhost',
+	    'PORT': '',
     }
 }
 
@@ -106,4 +106,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
