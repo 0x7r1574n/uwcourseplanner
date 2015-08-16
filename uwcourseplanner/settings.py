@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'planner',
     'scheduleapi',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
