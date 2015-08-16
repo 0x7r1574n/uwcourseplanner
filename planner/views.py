@@ -10,7 +10,7 @@ from django.shortcuts import redirect
 
 def course_list(request):
     curUser = request.user
-    courses = Course.objects.filter(author=curUser).order_by('year')
+    courses = Course.objects.filter(user=curUser).order_by('year')
     year1 = courses.filter(year=1)
     y1q1 = year1.filter(quarter=1)
     y1q2 = year1.filter(quarter=2)
@@ -23,7 +23,7 @@ def course_new(request):
         form = CourseForm(request.POST)
         if form.is_valid():
             course = form.save(commit=False)
-            course.author = request.user
+            course.user = request.user
             course.save()
             return redirect('planner.views.course_detail', pk=course.pk)
     else:
@@ -36,7 +36,7 @@ def course_edit(request, pk):
         form = CourseForm(request.POST)
         if form.is_valid():
             course = form.save(commit=False)
-            course.author = request.user
+            course.user = request.user
             course.save()
             return redirect('planner.views.course_detail', pk=course.pk)
     else:
