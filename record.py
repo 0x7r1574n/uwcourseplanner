@@ -2,7 +2,6 @@ import requests
 import bs4
 
 BASE_URL = 'http://www.washington.edu/students/crscat/'
-ERRORS = []
 
 
 def get_urls():
@@ -30,27 +29,23 @@ def format_text(text):
     candidate = parts[1]
     try:
         num = int(candidate)
-    except:
+    except ValueError:
         dept = dept + ' ' + candidate
         num = int(parts[2])
 
     fullname = dept.lower()+str(num)
     title = text[len(dept)+len(str(num))+1:text.index('(')]
-    payload = {'fullname': fullname, 'dept': dept.replace(' ', ''), 'number': num, 'title': title.strip()}
+    payload = {'fullname': fullname.replace(' ', ''), 'dept': dept, 'number': num, 'title': title.strip()}
     record(payload)
 
 
 def record(payload):
     r = requests.post('http://52.27.91.71/post/', data=payload)
     if r.status_code != 201:
-        print(payload, r.status_code)
-        ERRORS.append(payload)
+        print(payload)
 
 
 def main():
     get_courses(get_urls())
-    file_ = open('error.txt', 'w')
-    for payload in ERRORS:
-        file_.write("%s\n" % payload)
 
 main()
