@@ -3,6 +3,6 @@ from .serializers import CourseSerializer
 from rest_framework import generics
 
 
-class CourseList(generics.ListCreateAPIView):
+class CourseList(generics.ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
