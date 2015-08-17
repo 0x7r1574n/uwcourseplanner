@@ -6,3 +6,6 @@ class Course(models.Model):
     dept = models.CharField(max_length=50)
     number = models.IntegerField()
     title = models.CharField(max_length=150)
+
+    class Meta:
+        ordering = ('dept', 'number')
