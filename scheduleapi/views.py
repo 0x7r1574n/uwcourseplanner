@@ -14,3 +14,4 @@ class CourseList(generics.ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     filter_class = CourseFilter
+    paginate_by = 100
