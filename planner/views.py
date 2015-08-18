@@ -23,16 +23,14 @@ def course_new(request):
     if request.method == "POST":
         form = CourseForm(request.POST)
         if form.is_valid():
-            try:
-                course = form.save(commit=False)
-                course.user = request.user
-                master = get_object_or_404(Master, fullname=course.fullname)
-                course.dept = master.dept
-                course.number = master.number
-                course.title = master.title
-                course.save()
-                return redirect('planner.views.course_detail', pk=course.pk)
-            except
+            course = form.save(commit=False)
+            course.user = request.user
+            master = get_object_or_404(Master, fullname=course.fullname)
+            course.dept = master.dept
+            course.number = master.number
+            course.title = master.title
+            course.save()
+            return redirect('planner.views.course_detail', pk=course.pk)
     else:
         form = CourseForm()
     return render(request, 'planner/course_edit.html', {'form': form})
