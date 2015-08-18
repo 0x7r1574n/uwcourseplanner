@@ -11,6 +11,7 @@ class Course(models.Model):
     year = models.IntegerField()
     quarter = models.IntegerField()
     title = models.CharField(max_length=150)
+    description = models.URLField()
 
     class Meta:
         ordering = ('year', 'quarter', 'dept', 'number')

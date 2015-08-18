@@ -30,6 +30,7 @@ def course_new(request):
                 course.dept = master.dept
                 course.number = master.number
                 course.title = master.title
+                course.description = master.description
                 course.save()
                 return redirect('planner.views.course_detail', pk=course.pk)
             except Master.DoesNotExist:
@@ -51,6 +52,7 @@ def course_edit(request, pk):
                 course.dept = master.dept
                 course.number = master.number
                 course.title = master.title
+                course.description = master.description
                 course.save()
                 return redirect('planner.views.course_detail', pk=course.pk)
             except Master.DoesNotExist:

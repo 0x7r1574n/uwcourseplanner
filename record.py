@@ -20,10 +20,10 @@ def get_courses(urls):
         r = requests.get(BASE_URL+url)
         soup = bs4.BeautifulSoup(r.text, "html.parser")
         for text in soup.find_all('b'):
-            format_text(text.text)
+            format_text(text.text, url)
 
 
-def format_text(text):
+def format_text(text, url):
     parts = text.split()
     dept = parts[0]
     candidate = parts[1]
@@ -35,7 +35,9 @@ def format_text(text):
 
     fullname = dept.lower()+str(num)
     title = text[len(dept)+len(str(num))+1:text.index('(')]
-    payload = {'fullname': fullname.replace(' ', ''), 'dept': dept, 'number': num, 'title': title.strip()}
+    description = BASE_URL+url+'#'+fullname
+    payload = {'fullname': fullname.replace(' ', ''), 'dept': dept, 'number': num, 'title': title.strip(),
+               'description': description}
     record(payload)
 
 
