@@ -16,7 +16,7 @@ def get_courses(courses, year, quarter):
 def course_list(request):
     curUser = request.user.id
     courses = Course.objects.filter(user=curUser)
-    params = {('y%iq%i' % y, q): get_courses(courses, y, q) for y in range(1, 5) for q in range(1, 5)}
+    params = {('y%iq%i' % (y, q)): get_courses(courses, y, q) for y in range(1, 5) for q in range(1, 5)}
     params['courses'] = courses
     return render(request, 'planner/course_list.html', params)
 
