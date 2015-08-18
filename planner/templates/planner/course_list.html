@@ -1,7 +1,7 @@
 {% extends "planner/base.html" %}
 
-<div class="courseList">
 {% block content %}
+    <div class="courseList">
     {% for key, value in years_quarters %}
             <div class="courseEntry">
                 <h1>{{ key|upper }}</h1>
@@ -10,5 +10,5 @@
             </div>
         {% endfor %}
     {% endfor %}
+    </div>
 {% endblock content %}
-</div>
