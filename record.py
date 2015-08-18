@@ -33,7 +33,7 @@ def format_text(text, url):
         dept = dept + ' ' + candidate
         num = int(parts[2])
 
-    fullname = dept.lower()+str(num)
+    fullname = dept.lower().replace(' ', '')+str(num)
     title = text[len(dept)+len(str(num))+1:text.index('(')]
     description = BASE_URL+url+'#'+fullname
     payload = {'fullname': fullname.replace(' ', ''), 'dept': dept, 'number': num, 'title': title.strip(),
@@ -42,9 +42,9 @@ def format_text(text, url):
 
 
 def record(payload):
-    r = requests.post('http://52.27.91.71/post/', data=payload)
+    r = requests.post('http://52.27.91.71/api/', data=payload)
     if r.status_code != 201:
-        print(payload)
+        print(payload, r.status_code)
 
 
 def main():
