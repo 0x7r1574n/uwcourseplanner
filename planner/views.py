@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.utils import timezone
 from planner.models import Course
 from scheduleapi.models import Course as Master
 from django.shortcuts import render, get_object_or_404
@@ -7,8 +5,6 @@ from .forms import CourseForm
 
 from django.shortcuts import redirect
 
-
-# Create your views here.
 
 def get_courses(courses, year, quarter):
     return courses.filter(year=year).filter(quarter=quarter)
@@ -29,6 +25,10 @@ def course_new(request):
         if form.is_valid():
             course = form.save(commit=False)
             course.user = request.user
+            master = Master.objects.get(fullname=course.fullname)
+            course.dept = master.dept
+            course.number = master.number
+            course.title = master.title
             course.save()
             return redirect('planner.views.course_detail', pk=course.pk)
     else:
@@ -43,6 +43,10 @@ def course_edit(request, pk):
         if form.is_valid():
             course = form.save(commit=False)
             course.user = request.user
+            master = Master.objects.get(fullname=course.fullname)
+            course.dept = master.dept
+            course.number = master.number
+            course.title = master.title
             course.save()
             return redirect('planner.views.course_detail', pk=course.pk)
     else:
