@@ -2,7 +2,6 @@ from planner.models import Course
 from scheduleapi.models import Course as Master
 from django.shortcuts import render, get_object_or_404
 from .forms import CourseForm
-from django.http import Http404
 
 from django.shortcuts import redirect
 
@@ -24,16 +23,16 @@ def course_new(request):
     if request.method == "POST":
         form = CourseForm(request.POST)
         if form.is_valid():
-            course = form.save(commit=False)
-            course.user = request.user
             try:
-                master = get_object_or_404(Master, fullname=course.fullname)
+                course = form.save(commit=False)
+                course.user = request.user
+                master = Master.objects.get(fullname=course.fullname)
                 course.dept = master.dept
                 course.number = master.number
                 course.title = master.title
                 course.save()
                 return redirect('planner.views.course_detail', pk=course.pk)
-            except Http404:
+            except Master.DoesNotExist:
                 form = CourseForm()
     else:
         form = CourseForm()
@@ -45,16 +44,16 @@ def course_edit(request, pk):
     if request.method == "POST":
         form = CourseForm(request.POST)
         if form.is_valid():
-            course = form.save(commit=False)
-            course.user = request.user
             try:
-                master = get_object_or_404(Master, fullname=course.fullname)
+                course = form.save(commit=False)
+                course.user = request.user
+                master = Master.objects.get(fullname=course.fullname)
                 course.dept = master.dept
                 course.number = master.number
                 course.title = master.title
                 course.save()
                 return redirect('planner.views.course_detail', pk=course.pk)
-            except Http404:
+            except Master.DoesNotExist:
                 form = CourseForm()
     else:
         form = CourseForm()
