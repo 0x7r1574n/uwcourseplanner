@@ -2,11 +2,6 @@
 
 <div class="course-list">
 {% block content %}
-	{% for course in courses %}
-		<div class="course">
-			<p class="course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.fullname }}</a><a class="btn btn-remove" href=></a></p>
-		</div>
-	{% endfor %}
     {% for key, value in years_quarters %}
             <div class="course">
                 <h1>{{ key|upper }}</h1>
