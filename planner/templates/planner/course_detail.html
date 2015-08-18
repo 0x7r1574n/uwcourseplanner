@@ -1,10 +1,10 @@
 {% extends "planner/base.html" %}
 
 {% block content %}
-	<div class="course-detail">
-		<p>Full Name: <b>{{ course.dept }} {{ course.number }}</b></p>
-        <p>Credits: <b>{{ course.credit }}</b></p>
-		<p>Title: <b>{{ course.title }}</b></p>
-        <p>Description: <b><a href="{{ course.description }}">{{ course.description }}</a></b></p>
+	<div class="courseDetail">
+		<p class="fieldName">Full Name: <span class="courseDept">{{ course.dept }} {{ course.number }}</span></p>
+        <p class="fieldName">Credits: <span class="courseCredit">{{ course.credit }}</span></p>
+		<p class="fieldName">Title: <span class="courseTitle">{{ course.title }}</span></p>
+        <p class="fieldName">Description: <span class="courseDescription"><a href="{{ course.description }}">{{ course.description }}</a></span></p>
 	</div>
 {% endblock content %}

@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!doctype html>
 <html>
 	<head>
@@ -7,18 +9,19 @@
 		<meta name="description" content="UW Course Planner is a tool for visualizing your degree progress and planning your course trajectory. ">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/main.css">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,500italic,700italic,900,900italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static "css/main.css" %}">
 	</head>
 	<body>
 		{% if user.is_authenticated %}
-			<p>Hello {{ user.username }}<small>(<a href="{% url "django.contrib.auth.views.logout" %}">Log out</a>)</small></p>
-			<a href="{% url "course_new" %}">Add a Course</a>
+			<p class="hello">Hello {{ user.username }}<small>(<a href="{% url "django.contrib.auth.views.logout" %}">Log out</a>)</small></p>
+			<a class="addCourse" href="{% url "course_new" %}">Add a Course</a>
 			<br>
 		{% else %}
-			<a href="{% url "django.contrib.auth.views.login" %}">Log in</a>
+			<a class="hello" href="{% url "django.contrib.auth.views.login" %}">Log in</a>
 		{% endif %}
 
-		<h1><a href="/">UW Course Planner</a></h1>
+		<h1 class="pageTitle"><a href="/">UW Course Planner</a></h1>
 		<br>
 
 		{% block content %}
