@@ -65,7 +65,8 @@ body {
     margin: 2em;
 }
 
-.hello {
+a.hello {
+    float: right;
 
 }
 
@@ -73,11 +74,16 @@ body {
 
 }
 
+.pageTitle {
+    display: inline-block;
+}
+
 h1.pageTitle {
     font-family: 'Playfair Display', serif;
     font-weight: 900;
     font-size: 2em;
     letter-spacing: 0.05em;
+    float: left;
 }
 
 .courseList {
