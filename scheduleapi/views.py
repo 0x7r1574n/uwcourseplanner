@@ -10,7 +10,7 @@ class CourseFilter(django_filters.FilterSet):
         fields = ['fullname', 'dept', 'number', 'title']
 
 
-class CourseList(generics.ListAPIView):
+class CourseList(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     filter_class = CourseFilter
