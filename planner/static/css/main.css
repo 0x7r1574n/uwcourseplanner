@@ -55,49 +55,57 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+html {
+    background-color: #B3FFFC;
+    color: #000000;
+}
 
 body {
     font-family: 'Roboto', sans-serif;
+    margin: 2em;
 }
 
-hello {
-
-}
-
-addCourse {
+.hello {
 
 }
 
-pageTitle {
+.addCourse {
 
 }
 
-courseList {
+.pageTitle {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 2em;
+    letter-spacing: 0.05em;
+}
+
+.courseList {
 
 }
 
-courseEntry {
+.courseEntry {
 
 }
 
-courseEntryTitle {
+.courseEntryTitle {
 
 }
 
 
-courseDetail {
+.courseDetail {
 
 }
 
-fieldName {
+.fieldName {
 
 }
 
-courseDept {
+.courseDept {
 
 }
 
-courseCredit {
+.courseCredit {
 
 }
 
