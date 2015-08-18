@@ -18,7 +18,7 @@ def course_list(request):
     curr_user = request.user.id
     courses = Course.objects.filter(user=curr_user)
     context = {
-        'years_quarters': {('y%iq%i' % (y, q)): get_courses(courses, y, q) for y in range(1, 5) for q in range(1, 5)},
+        'years_quarters': sorted({('y%iq%i' % (y, q)): get_courses(courses, y, q) for y in range(1, 5) for q in range(1, 5)}.iteritems()),
         'courses': courses}
     return render(request, 'planner/course_list.html', context)
 
