@@ -3,17 +3,17 @@
 {% block content %}
     <div class="courseList">
         <div class="year">
-        {% for key, value in years_quarters %}
-            <div class="courseEntry">
+            {% for key, value in years_quarters %}
+            <div class="quarter">
                 <h1>{{ key|upper }}</h1>
-            {% for course in value %}
+                {% for course in value %}
                 <p class="courseEntryTitle"><a href="{% url "course_detail" pk=course.pk %}">{{ course.dept }} {{ course.number }}</a><a class="btn btn-remove" href=></a></p>
-            {% endfor %}
+                {% endfor %}
             </div>
-        {% if forloop.counter0|divisibleby:4 %}
-            </div>
-            <div class="year">
-        {% endif %}
+            {% if forloop.counter|divisibleby:4 %}
+                </div>
+                <div class="year">
+            {% endif %}
         {% endfor %}
         </div>
     </div>
