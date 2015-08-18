@@ -36,7 +36,7 @@ def course_new(request):
 
 
 def course_edit(request, pk):
-    course = get_object_or_404(Post, pk=pk)
+    course = get_object_or_404(Course, pk=pk)
     if request.method == "POST":
         form = CourseForm(request.POST)
         if form.is_valid():
