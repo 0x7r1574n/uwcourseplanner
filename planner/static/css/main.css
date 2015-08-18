@@ -65,6 +65,14 @@ body {
     margin: 2em;
 }
 
+a {
+    color: #FE5F55;
+}
+
+a:hover {
+    color: #ED1C24;
+}
+
 a.hello {
     float: right;
 
