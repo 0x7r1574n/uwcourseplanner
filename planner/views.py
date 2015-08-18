@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Course
+from planner.models import Course
+from scheduleapi.models import Course as Master
 from django.shortcuts import render, get_object_or_404
 from .forms import CourseForm
 
@@ -14,11 +15,12 @@ def get_courses(courses, year, quarter):
 
 
 def course_list(request):
-    curUser = request.user.id
-    courses = Course.objects.filter(user=curUser)
-    params = {('y%iq%i' % (y, q)): get_courses(courses, y, q) for y in range(1, 5) for q in range(1, 5)}
-    params['courses'] = courses
-    return render(request, 'planner/course_list.html', params)
+    curr_user = request.user.id
+    courses = Course.objects.filter(user=curr_user)
+    context = {
+        'years_quarters': {('y%iq%i' % (y, q)): get_courses(courses, y, q) for y in range(1, 5) for q in range(1, 5)},
+        'courses': courses}
+    return render(request, 'planner/course_list.html', context)
 
 
 def course_new(request):
