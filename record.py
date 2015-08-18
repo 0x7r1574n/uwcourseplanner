@@ -5,13 +5,13 @@ BASE_URL = 'http://www.washington.edu/students/crscat/'
 
 
 def get_urls():
-    urls = []
+    urls = set()
     r = requests.get(BASE_URL)
     soup = bs4.BeautifulSoup(r.text, "html.parser")
     for link in soup.find_all('a'):
         a = str(link.get('href'))
         if not (a.startswith('http') or a.startswith('/')) and a.endswith('html'):
-            urls.append(a)
+            urls.add(a)
     return urls
 
 
@@ -36,7 +36,7 @@ def format_text(text, url):
     fullname = dept.lower().replace(' ', '')+str(num)
     title = text[len(dept)+len(str(num))+1:text.index('(')]
     description = BASE_URL+url+'#'+fullname
-    payload = {'fullname': fullname.replace(' ', ''), 'dept': dept, 'number': num, 'title': title.strip(),
+    payload = {'fullname': fullname, 'dept': dept, 'number': num, 'title': title.strip(),
                'description': description}
     record(payload)
 
