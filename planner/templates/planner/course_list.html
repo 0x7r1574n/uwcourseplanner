@@ -6,7 +6,7 @@
             <div class="course">
                 <h1>{{ key|upper }}</h1>
         {% for course in value %}
-                <p class="course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.fullname }}</a><a class="btn btn-remove" href=></a></p>
+                <p class="course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.dept }} {{ course.number }}</a><a class="btn btn-remove" href=></a></p>
             </div>
         {% endfor %}
     {% endfor %}
