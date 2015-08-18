@@ -7,5 +7,11 @@
 			<p class = "course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.fullname }}</a> <a class="btn btn-remove" href=></p>
 		</div>
 	{% endfor %}
+	{% for course in y1q1 %}
+		<div class="course">
+			<h1> Y1Q1 </h1>
+			<p class = "course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.fullname }}</a> <a class="btn btn-remove" href=></p>
+		</div>
+	{% endfor %}
 {% endblock content %}
 </div>
