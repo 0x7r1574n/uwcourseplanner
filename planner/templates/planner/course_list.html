@@ -3,12 +3,18 @@
 {% block content %}
     <div class="courseList">
     {% for key, value in years_quarters %}
+        {% if forloop.counter0|divisibleby:4 %}
+            <div class="year">
+        {% endif %}
             <div class="courseEntry">
                 <h1>{{ key|upper }}</h1>
         {% for course in value %}
                 <p class="courseEntryTitle"><a href="{% url "course_detail" pk=course.pk %}">{{ course.dept }} {{ course.number }}</a><a class="btn btn-remove" href=></a></p>
             </div>
         {% endfor %}
+        {% if forloop.counter0|divisibleby:4 %}
+            </div>
+        {% endif %}
     {% endfor %}
     </div>
 {% endblock content %}
