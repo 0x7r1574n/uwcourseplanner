@@ -5,4 +5,4 @@ class CourseForm(forms.ModelForm):
 
 	class Meta:
 		model = Course
-		fields = ('dept', 'number', 'year', 'quarter', 'credit')
+		fields = ('fullname', 'dept', 'number', 'year', 'quarter', 'credit')
