@@ -109,6 +109,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+STATICFILES_DIRS = (
+    '/planner/static/css'
+)
+
 # REST framework settings
 
 REST_FRAMEWORK = {
