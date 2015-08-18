@@ -2,8 +2,8 @@
 
 {% block content %}
     <div class="courseList">
+        <div class="year">
     {% for key, value in years_quarters %}
-        {% if forloop.counter0|divisibleby:4 %}<div class="year">{% endif %}
             <div class="courseEntry">
                 <h1>{{ key|upper }}</h1>
         {% for course in value %}
