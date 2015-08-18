@@ -4,14 +4,16 @@
 {% block content %}
 	{% for course in courses %}
 		<div class="course">
-			<p class = "course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.fullname }}</a> <a class="btn btn-remove" href=></p>
+			<p class="course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.fullname }}</a><a class="btn btn-remove" href=></a></p>
 		</div>
 	{% endfor %}
-	{% for course in y1q1 %}
-		<div class="course">
-			<h1> Y1Q1 </h1>
-			<p class = "course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.fullname }}</a> <a class="btn btn-remove" href=></p>
-		</div>
-	{% endfor %}
+    {% for yq in years_quarters %}
+        {% for course in yq %}
+            <div class="course">
+                <h1>{{ yq|upper }}</h1>
+                <p class="course-title"><a href="{% url "course_detail" pk=course.pk %}">{{ course.fullname }}</a><a class="btn btn-remove" href=></a></p>
+            </div>
+        {% endfor %}
+    {% endfor %}
 {% endblock content %}
 </div>
