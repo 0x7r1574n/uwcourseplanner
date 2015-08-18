@@ -9,17 +9,16 @@ from django.shortcuts import redirect
 
 # Create your views here.
 
+def get_courses(courses, year, quarter):
+    return courses.filter(year=year).filter(quarter=quarter)
+
 
 def course_list(request):
     curUser = request.user.id
     courses = Course.objects.filter(user=curUser)
-    year1 = courses.filter(year=1)
-    y1q1 = year1.filter(quarter=1)
-    y1q2 = year1.filter(quarter=2)
-    y1q3 = year1.filter(quarter=3)
-    y1q4 = year1.filter(quarter=4)
-    return render(request, 'planner/course_list.html',
-                  {'courses': courses, 'y1': year1, 'y1q1': y1q1, 'y1q2': y1q2, 'y1q3': y1q3, 'y1q4': y1q4})
+    params = {('y%iq%i' % y, q): get_courses(courses, y, q) for y in range(1, 5) for q in range(1, 5)}
+    params['courses'] = courses
+    return render(request, 'planner/course_list.html', params)
 
 
 def course_new(request):
