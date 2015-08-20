@@ -60,7 +60,7 @@ html {
     color: #000000;
 }
 
-container-fluid {
+container-fluid !important{
   background-color: #B3FFFC;
   color: #000000;
 }
