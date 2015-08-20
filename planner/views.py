@@ -2,7 +2,7 @@ from planner.models import Course
 from scheduleapi.models import Course as Master
 from django.shortcuts import render, get_object_or_404
 from .forms import CourseForm
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
 
