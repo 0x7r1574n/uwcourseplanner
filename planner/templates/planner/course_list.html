@@ -1,10 +1,11 @@
 {% extends "planner/base.html" %}
 
 {% block content %}
-    <div class="courseList">
-        <div class="year">
+
+    <div class="courseList container-fluid">
+        <div class="year row">
             {% for key, value in years_quarters %}
-            <div class="quarter">
+            <div class="quarter col-md-3">
                 <h1>{{ key|upper }}</h1>
                 {% for course in value %}
                 <p class="courseEntryTitle"><a href="{% url "course_detail" pk=course.pk %}">{{ course.dept }} {{ course.number }}</a><a class="btn btn-remove" href=></a></p>
@@ -15,6 +16,6 @@
                 <div class="year">
             {% endif %}
         {% endfor %}
-        </div>
+      </div> <!-- whats going on here? -->
     </div>
 {% endblock content %}
