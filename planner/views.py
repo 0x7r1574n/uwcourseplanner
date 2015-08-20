@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 def get_courses(courses, year, quarter):
     return courses.filter(year=year).filter(quarter=quarter)
 
-
+@login_required(login_url='/accounts/login/')
 def course_list(request):
     curr_user = request.user.id
     courses = Course.objects.filter(user=curr_user)
