@@ -4,7 +4,7 @@
   <div class = "sidebar">
     <ul>
       {% for course in cores %}
-      <li>course.fullname</li>
+      <li>{{ course.fullname }}</li>
       {% endfor %}
     </ul>
   </div>
@@ -19,9 +19,9 @@
             </div>
             {% if forloop.counter|divisibleby:4 %}
             </div>
-                <div class="year">
+                <div class="year row">
             {% endif %}
         {% endfor %}
-      </div> <!-- whats going on here? -->
+      </div>
     </div>
 {% endblock content %}
