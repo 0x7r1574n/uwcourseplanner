@@ -25,8 +25,8 @@ def course_new(request):
         form = CourseForm(request.POST)
         if form.is_valid():
             course = form.save(commit=False)
+            course.user = request.user
             try:
-                course.user = request.user
                 # if it is core
                 core = Core.objects.get(fullname=course.fullname)
                 # if prereq is fulfilled
@@ -38,7 +38,6 @@ def course_new(request):
                     course.title = master.title
                     course.description = master.description
                     course.save()
-                    return redirect('planner.views.course_detail', pk=course.pk)
                 else:
                     master = Master.objects.get(fullname=course.fullname)
                     course.dept = master.dept
@@ -46,7 +45,7 @@ def course_new(request):
                     course.title = master.title
                     course.description = master.description
                     course.save()
-                    return redirect('planner.views.course_detail', pk=course.pk)
+                return redirect('planner.views.course_detail', pk=course.pk)
             except Core.DoesNotExist:  # if not core
                 master = Master.objects.get(fullname=course.fullname)
                 course.dept = master.dept
@@ -55,7 +54,7 @@ def course_new(request):
                 course.description = master.description
                 course.save()
                 return redirect('planner.views.course_detail', pk=course.pk)
-            else:  # not in master or prereq not fulfilled
+            except Course.DoesNotExist, Master.DoesNotExist:  # not in master or prereq not fulfilled
                 form = CourseForm()
     else:
         form = CourseForm()
