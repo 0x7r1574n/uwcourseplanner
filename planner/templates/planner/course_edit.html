@@ -1,6 +1,9 @@
 {% extends "planner/base.html" %}
 
 {% block content %}
+    {% if form.errors %}
+    <p>Invalid input.</p>
+    {% endif %}
 	<p>Add a Course</p>
 	<form method="POST">{% csrf_token %}
 		{{ form.as_p }}
