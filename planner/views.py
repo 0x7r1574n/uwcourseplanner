@@ -24,9 +24,8 @@ def course_list(request):
     for core in cores:
         try:
             courses.filter(fullname=core.fullname)
-            remaining.append(core)
         except Course.DoesNotExist:
-            pass
+            remaining.append(core)
     context = {
         'years_quarters': sorted({('y%iq%i' % (y, q)): get_courses(courses, y, q) for y in range(1, 5) for q in range(1, 5)}.iteritems()),
         'courses': courses,
