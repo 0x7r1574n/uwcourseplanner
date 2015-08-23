@@ -92,13 +92,16 @@ a:hover {
 
 .topBar {
     background-color: #16302B;
+    padding: 1em;
 }
 
 .pageTitle {
+    color: #FCFCFC;
     display: inline-block;
     font-weight: 300;
     font-size: 1.5em;
     letter-spacing: 0;
+    margin: 0;
 }
 
 .loginForm {
