@@ -42,35 +42,35 @@ def course_new(request):
             course = form.save(commit=False)
             course.user = request.user
             courses = Course.objects.filter(user=request.user.id)
-            try:
-                # if it is core
-                master = Master.objects.get(fullname=course.fullname)
-                core = Core.objects.get(fullname=course.fullname)
-                # if prereq is fulfilled
-                if len(core.prereq) != 0:
-                    courses.get(fullname=core.prereq)
-                    course.dept = master.dept
-                    course.number = master.number
-                    course.title = master.title
-                    course.description = master.description
-                    course.save()
-                else:
-                    course.dept = master.dept
-                    course.number = master.number
-                    course.title = master.title
-                    course.description = master.description
-                    course.save()
-                return redirect('planner.views.course_detail', pk=course.pk)
-            except Core.DoesNotExist:  # if not core
-                master = Master.objects.get(fullname=course.fullname)
-                course.dept = master.dept
-                course.number = master.number
-                course.title = master.title
-                course.description = master.description
-                course.save()
-                return redirect('planner.views.course_detail', pk=course.pk)
-            except Course.DoesNotExist, Master.DoesNotExist:  # not in master or prereq not fulfilled
+            cores = Core.objects.get_queryset()
+            master = Master.objects.get(fullname=course.fullname)
+            if len(master) != 0:
+                for core in cores:
+                    # check if is adding a core and has a prereq
+                    if core.fullname == course.fullname and core.prereq != '':
+                        fulfilled = False
+                        for course in courses:
+                            # check if user has prereq
+                            if course.fullname == core.prereq:
+                                fulfilled = True
+                                course.dept = master[0].dept
+                                course.number = master[0].number
+                                course.title = master[0].title
+                                course.description = master[0].description
+                                course.save()
+                        if not fulfilled:
+                            form = CourseForm()
+                    # if not core or is core but no prereqs (add the class)
+                    else:
+                        course.dept = master[0].dept
+                        course.number = master[0].number
+                        course.title = master[0].title
+                        course.description = master[0].description
+                        course.save()
+            else:
                 form = CourseForm()
+                return render(request, 'planner/course_edit.html', {'form': form})
+            return redirect('planner.views.course_detail', pk=course.pk)
     else:
         form = CourseForm()
     return render(request, 'planner/course_edit.html', {'form': form})
@@ -128,44 +128,3 @@ class RestCoreList(generics.ListCreateAPIView):
 class RestCoreDetail(generics.RetrieveDestroyAPIView):
     queryset = Core.objects.all()
     serializer_class = CoreSerializer
-
-
-
-def test(request):
-    if request.method == "POST":
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            course = form.save(commit=False)
-            course.user = request.user
-            courses = Course.objects.filter(user=request.user.id)
-            cores = Core.objects.get_queryset()
-            master = Master.objects.get(fullname=course.fullname)
-            if len(master) != 0:
-                for core in cores:
-                    # check if is adding a core and has a prereq
-                    if core.fullname == course.fullname and core.prereq != '':
-                        fulfilled = False
-                        for course in courses:
-                            # check if user has prereq
-                            if course.fullname == core.prereq:
-                                fulfilled = True
-                                course.dept = master[0].dept
-                                course.number = master[0].number
-                                course.title = master[0].title
-                                course.description = master[0].description
-                                course.save()
-                        if not fulfilled:
-                            form = CourseForm()
-                    # if not core or is core but no prereqs (add the class)
-                    else:
-                        course.dept = master[0].dept
-                        course.number = master[0].number
-                        course.title = master[0].title
-                        course.description = master[0].description
-                        course.save()
-            else:
-                form = CourseForm()
-            return redirect('planner.views.course_detail', pk=course.pk)
-    else:
-        form = CourseForm()
-    return render(request, 'planner/course_edit.html', {'form': form})
