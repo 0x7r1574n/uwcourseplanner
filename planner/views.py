@@ -23,7 +23,7 @@ def course_list(request):
     cores = Core.objects.get_queryset()
     for core in cores:
         try:
-            courses.filter(fullname=core.fullname)
+            courses.get(fullname=core.fullname)
         except Course.DoesNotExist:
             remaining.append(core)
     context = {
