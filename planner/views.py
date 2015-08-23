@@ -95,7 +95,7 @@ def course_detail(request, pk):
 @api_view(['GET', 'POST'])
 def rest_course_list(request):
     if request.method == 'GET':
-        courses = Course.objects.filter(request.user.id)
+        courses = Course.objects.filter(user=request.user.id)
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data)
 
