@@ -81,7 +81,7 @@ def course_detail(request, pk):
 
 @login_required(login_url='/accounts/login/')
 @api_view(['GET', 'POST'])
-def course_list(request):
+def rest_course_list(request):
     if request.method == 'GET':
         snippets = Course.objects.all()
         serializer = CourseSerializer(snippets, many=True)
@@ -97,7 +97,7 @@ def course_list(request):
 
 @login_required(login_url='/accounts/login/')
 @api_view(['DELETE'])
-def course_delete(request, pk):
+def rest_course_detail(request, pk):
     course = get_object_or_404(Course, pk)
     if request.method == 'DELETE':
         course.delete()
@@ -106,7 +106,7 @@ def course_delete(request, pk):
 
 @login_required(login_url='/accounts/login/')
 @api_view(['GET', 'POST'])
-def core_list(request):
+def rest_core_list(request):
     if request.method == 'GET':
         cores = Core.objects.all()
         serializer = CoreSerializer(cores, many=True)
