@@ -47,7 +47,7 @@ def course_new(request):
                 # if it is core
                 core = Core.objects.get(fullname=course.fullname)
                 # if prereq is fulfilled
-                if core.prereq:
+                if len(core.prereq) != 0:
                     courses.get(fullname=core.prereq)
                     master = Master.objects.get(fullname=course.fullname)
                     course.dept = master.dept
