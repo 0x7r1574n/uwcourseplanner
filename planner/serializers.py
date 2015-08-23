@@ -9,7 +9,7 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class CoreSerializer(serializers.ModelSerializer):
-    prereq = serializers.CharField(max_length=50, allow_blank=True)
+    prereq = serializers.CharField(max_length=50, allow_blank=True, required=False)
 
     class Meta:
         model = Core
