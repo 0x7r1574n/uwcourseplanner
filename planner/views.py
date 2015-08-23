@@ -8,6 +8,7 @@ from serializers import CourseSerializer, CoreSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import generics
 
 
 def get_courses(courses, year, quarter):
@@ -94,7 +95,7 @@ def course_detail(request, pk):
 @api_view(['GET', 'POST'])
 def rest_course_list(request):
     if request.method == 'GET':
-        courses = Course.objects.all().filter(request.user.id)
+        courses = Course.objects.filter(request.user.id)
         serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data)
 
@@ -121,17 +122,6 @@ def rest_course_detail(request, pk):
         return Response(serializer.data)
 
 
-@login_required(login_url='/accounts/login/')
-@api_view(['GET', 'POST'])
-def rest_core_list(request):
-    if request.method == 'GET':
-        cores = Core.objects.all()
-        serializer = CoreSerializer(cores, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = CoreSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class RestCoreList(generics.ListCreateAPIView):
+    queryset = Core.objects.all()
+    serializer_class = CoreSerializer
