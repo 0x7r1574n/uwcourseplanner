@@ -96,12 +96,15 @@ def rest_course_list(request):
 
 
 @login_required(login_url='/accounts/login/')
-@api_view(['DELETE'])
+@api_view(['GET', 'DELETE'])
 def rest_course_detail(request, pk):
     course = get_object_or_404(Course, pk)
     if request.method == 'DELETE':
         course.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    elif request.method == 'GET':
+        serializer = CourseSerializer(course)
+        return Response(serializer.data)
 
 
 @login_required(login_url='/accounts/login/')
