@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'courseapi/$', views.rest_course_list, name='course-list'),
     url(r'courseapi/(?P<pk>[0-9]+)/$', views.rest_course_detail, name='core-course-detail'),
     url(r'coreapi/$', views.RestCoreList.as_view(), name='core-course-list'),
+    url(r'coreapi/(?P<pk>[0-9]+)/$', views.RestCoreDetail.as_view(), name='core-course-detail'),
 ]

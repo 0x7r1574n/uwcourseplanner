@@ -125,3 +125,8 @@ def rest_course_detail(request, pk):
 class RestCoreList(generics.ListCreateAPIView):
     queryset = Core.objects.all()
     serializer_class = CoreSerializer
+
+
+class RestCoreDetail(generics.RetrieveDestroyAPIView):
+    queryset = Core.objects.all()
+    serializer_class = CoreSerializer
