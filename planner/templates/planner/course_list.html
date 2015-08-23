@@ -11,7 +11,7 @@
     <div class="courseList container-fluid">
         <div class="year row">
             {% for key, value in years_quarters %}
-            <div class="quarter col-md-3">
+            <div class="quarter col-xs-3">
                 <h1>{{ key|upper }}</h1>
                 {% for course in value %}
                 <p class="courseEntryTitle"><a href="{% url "course_detail" pk=course.pk %}">{{ course.dept }} {{ course.number }}</a><a class="btn btn-remove" href=></a></p>
