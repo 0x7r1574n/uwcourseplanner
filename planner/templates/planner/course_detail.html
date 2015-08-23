@@ -7,4 +7,9 @@
 		<p class="fieldName">Title: <span class="courseTitle">{{ course.title }}</span></p>
         <p class="fieldName">Description: <span class="courseDescription"><a href="{{ course.description }}">{{ course.description }}</a></span></p>
 	</div>
+	<form>
+	<button type="submit" formaction="{% course 'course_remove' pk=course.pk %}">
+		Delete
+	</button>
+</form>
 {% endblock content %}
