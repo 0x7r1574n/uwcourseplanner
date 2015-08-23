@@ -1,7 +1,13 @@
 {% extends "planner/base.html" %}
 
 {% block content %}
-
+  <div class = "sidebar">
+    <ul>
+      {% for course in cores %}
+      <li>course.fullname</li>
+      {% endfor %}
+    </ul>
+  </div>
     <div class="courseList container-fluid">
         <div class="year row">
             {% for key, value in years_quarters %}
@@ -12,8 +18,8 @@
                 {% endfor %}
             </div>
             {% if forloop.counter|divisibleby:4 %}
-                </div>
-                <div class="year row">
+            </div>
+                <div class="year">
             {% endif %}
         {% endfor %}
       </div> <!-- whats going on here? -->
