@@ -42,7 +42,7 @@ def format_text(text, url):
 
 
 def record(payload):
-    r = requests.post('http://52.27.91.71/api/', data=payload)
+    r = requests.post('http://52.27.91.71/masterapi/', data=payload)
     if r.status_code != 201:
         print(payload, r.status_code)
 
