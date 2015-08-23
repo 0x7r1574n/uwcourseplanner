@@ -44,18 +44,17 @@ def course_new(request):
             courses = Course.objects.filter(user=request.user.id)
             try:
                 # if it is core
+                master = Master.objects.get(fullname=course.fullname)
                 core = Core.objects.get(fullname=course.fullname)
                 # if prereq is fulfilled
                 if len(core.prereq) != 0:
                     courses.get(fullname=core.prereq)
-                    master = Master.objects.get(fullname=course.fullname)
                     course.dept = master.dept
                     course.number = master.number
                     course.title = master.title
                     course.description = master.description
                     course.save()
                 else:
-                    master = Master.objects.get(fullname=course.fullname)
                     course.dept = master.dept
                     course.number = master.number
                     course.title = master.title
