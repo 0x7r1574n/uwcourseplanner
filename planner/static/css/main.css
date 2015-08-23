@@ -55,7 +55,7 @@ textarea {
    ========================================================================== */
 
 /*  Gerfeys's Colors
-    #B3FFFC - OffWhite
+    #FCFCFC - OffWhite
     #16302B - OffBlack
     #B3FFFC - BabyBlue      #0CBABA - Darker BabyBlue
     #FE5F55 - RedOrange     #ED1C24 - Darker RedOrange
@@ -70,7 +70,7 @@ textarea {
 */
 
 body {
-    background-color: #B3FFFC;
+    background-color: #FCFCFC;
     color: #16302B;
     font-family: 'Roboto', sans-serif;
 }
