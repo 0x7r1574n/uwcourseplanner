@@ -18,9 +18,19 @@ def get_courses(courses, year, quarter):
 def course_list(request):
     curr_user = request.user.id
     courses = Course.objects.filter(user=curr_user)
+    remaining = []
+    cores = Core.objects.get_queryset()
+    for core in cores:
+        try:
+            courses.filter(fullname=core.fullname)
+            remaining.append(core)
+        except Course.DoesNotExist:
+            pass
     context = {
         'years_quarters': sorted({('y%iq%i' % (y, q)): get_courses(courses, y, q) for y in range(1, 5) for q in range(1, 5)}.iteritems()),
-        'courses': courses}
+        'courses': courses,
+        'cores': remaining
+    }
     return render(request, 'planner/course_list.html', context)
 
 
@@ -31,12 +41,13 @@ def course_new(request):
         if form.is_valid():
             course = form.save(commit=False)
             course.user = request.user
+            courses = Course.objects.filter(user=request.user.id)
             try:
                 # if it is core
                 core = Core.objects.get(fullname=course.fullname)
                 # if prereq is fulfilled
                 if core.prereq:
-                    Course.objects.get(fullname=core.prereq)
+                    courses.get(fullname=core.prereq)
                     master = Master.objects.get(fullname=course.fullname)
                     course.dept = master.dept
                     course.number = master.number
@@ -83,8 +94,8 @@ def course_detail(request, pk):
 @api_view(['GET', 'POST'])
 def rest_course_list(request):
     if request.method == 'GET':
-        snippets = Course.objects.all()
-        serializer = CourseSerializer(snippets, many=True)
+        courses = Course.objects.all().filter(request.user.id)
+        serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data)
 
     elif request.method == 'POST':
@@ -98,7 +109,10 @@ def rest_course_list(request):
 @login_required(login_url='/accounts/login/')
 @api_view(['GET', 'DELETE'])
 def rest_course_detail(request, pk):
-    course = get_object_or_404(Course, pk)
+    try:
+        course = Course.objects.get(pk=pk)
+    except Course.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
     if request.method == 'DELETE':
         course.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
