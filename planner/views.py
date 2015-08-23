@@ -30,7 +30,23 @@ def course_new(request):
                 # if it is core
                 core = Core.objects.get(fullname=course.fullname)
                 # if prereq is fulfilled
-                prereq = Course.objects.get(fullname=core.prereq)
+                if core.prereq:
+                    Course.objects.get(fullname=core.prereq)
+                    master = Master.objects.get(fullname=course.fullname)
+                    course.dept = master.dept
+                    course.number = master.number
+                    course.title = master.title
+                    course.description = master.description
+                    course.save()
+                    return redirect('planner.views.course_detail', pk=course.pk)
+                else:
+                    master = Master.objects.get(fullname=course.fullname)
+                    course.dept = master.dept
+                    course.number = master.number
+                    course.title = master.title
+                    course.description = master.description
+                    course.save()
+                    return redirect('planner.views.course_detail', pk=course.pk)
             except Core.DoesNotExist:  # if not core
                 master = Master.objects.get(fullname=course.fullname)
                 course.dept = master.dept
