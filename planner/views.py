@@ -43,7 +43,7 @@ def course_new(request):
             course.user = request.user
             courses = Course.objects.filter(user=request.user.id)
             cores = Core.objects.get_queryset()
-            master = Master.objects.get(fullname=course.fullname)
+            master = Master.objects.filter(fullname=course.fullname)
             if len(master) != 0:
                 for core in cores:
                     # check if is adding a core and has a prereq
