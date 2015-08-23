@@ -55,19 +55,26 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-html {
-    background-color: #B3FFFC;
-    color: #000000;
-}
 
-container-fluid !important{
-  background-color: #B3FFFC;
-  color: #000000;
+/*  Gerfeys's Colors
+    #B3FFFC - OffWhite
+    #16302B - OffBlack
+    #B3FFFC - BabyBlue      #0CBABA - Darker BabyBlue
+    #FE5F55 - RedOrange     #ED1C24 - Darker RedOrange
+    #454B66 - Purple
+*/
+
+/*
+.container-fluid !important {
+    background-color: #B3FFFC;
+    color: #16302B;
 }
+*/
 
 body {
+    background-color: #B3FFFC;
+    color: #16302B;
     font-family: 'Roboto', sans-serif;
-    margin: 2em;
 }
 
 a {
@@ -83,8 +90,8 @@ a.hello {
 
 }
 
-.addCourse {
-
+.topBar {
+    background-color: #16302B;
 }
 
 .pageTitle {
@@ -92,6 +99,10 @@ a.hello {
     font-weight: 900;
     font-size: 2em;
     letter-spacing: 0.05em;
+}
+
+.addCourse {
+
 }
 
 .courseList {
@@ -105,7 +116,6 @@ a.hello {
 .courseEntryTitle {
 
 }
-
 
 .courseDetail {
 
