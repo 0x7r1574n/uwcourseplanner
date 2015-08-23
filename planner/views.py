@@ -41,6 +41,7 @@ def course_new(request):
         if form.is_valid():
             course = form.save(commit=False)
             course.user = request.user
+            course.fullname = course.fullname.lower().replace(' ', '')  # reformat user input
             courses = Course.objects.filter(user=request.user.id)
             cores = Core.objects.get_queryset()
             master = Master.objects.filter(fullname=course.fullname)
