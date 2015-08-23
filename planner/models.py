@@ -15,3 +15,8 @@ class Course(models.Model):
 
     class Meta:
         ordering = ('year', 'quarter', 'dept', 'number')
+
+
+class Core(models.Model):
+    fullname = models.CharField(max_length=50)
+    prereq = models.CharField(max_length=50)
