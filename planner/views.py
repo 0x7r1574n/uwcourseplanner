@@ -87,6 +87,9 @@ def course_remove(request, pk):
 @login_required(login_url='/accounts/login/')
 def course_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
+    if request.POST.get('delete'):
+        course.delete()
+        return redirect('planner.views.course_list')
     return render(request, 'planner/course_detail.html', {'course': course})
 
 
