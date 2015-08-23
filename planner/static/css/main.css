@@ -85,7 +85,7 @@ a:hover {
     color: #ED1C24;
 }
 
-a.hello {
+.hello {
     float: right;
 
 }
@@ -111,6 +111,14 @@ a.hello {
 
 .sidebar {
     float: right;
+
+}
+
+.coreListTitle {
+
+}
+
+.coreListItem {
 
 }
 
