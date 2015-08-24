@@ -90,6 +90,15 @@ ul {
     padding: 0;
 }
 
+input {
+    background: #FE5F55;
+    color: #FCFCFC;
+    padding: 1em 2em;
+    border: 0;
+    margin: 0;
+    margin-left: 1em;
+}
+
 .hello {
     float: right;
 
@@ -190,22 +199,27 @@ a.pageTitleLink {
 
 
 .courseDetail {
-
+    padding: 1em;
 }
 
 .fieldName {
-
+    list-style-type: none;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    line-height: 2em;
 }
 
-.courseDept {
-
+.courseDept .courseCredit .courseTitle .courseDescription {
+    font-size: 1.5em;
+    font-weight: 900;
+    letter-spacing: 0.05em;
 }
 
-.courseCredit {
-
+.courseTitle .courseDescription {
+    text-transform: none;
 }
-
-
 
 
 
