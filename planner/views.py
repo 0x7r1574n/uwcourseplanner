@@ -66,7 +66,7 @@ def course_new(request):
                             error = 'Prerequisite not fulfilled.'
                             return render(request, 'planner/course_edit.html', {'form': form, 'error': error})
                     # if not core or is core but no prereqs (add the class)
-                    elif core.prereq == '' or len(cores.filter(fullname=course.fullname)) == 0:
+                    elif (core.fullname == course.fullname and core.prereq == '') or len(cores.filter(fullname=course.fullname)) == 0:
                         course.dept = master[0].dept
                         course.number = master[0].number
                         course.title = master[0].title
