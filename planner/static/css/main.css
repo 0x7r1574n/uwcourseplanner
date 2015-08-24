@@ -93,6 +93,7 @@ a:hover {
 .topBar {
     background-color: #16302B;
     padding: 1em;
+    margin-bottom: 3em;
 }
 
 .pageTitle {
@@ -134,8 +135,17 @@ a:hover {
     width: 80%
 }
 
-.quarterTitle {
+.year {
+    margin-bottom: 2em;
+    border-top: 1px solid;
+    border-color: #FE5F55;
+    padding-top: 1em;
+}
 
+.quarterTitle {
+    font-size: 0.75em;
+    font-weight: 100;
+    letter-spacing: 0.25em;
 }
 
 .courseEntry {
@@ -143,8 +153,15 @@ a:hover {
 }
 
 .courseEntryTitle {
-
+    font-size: 2em;
+    font-weight: 900;
+    letter-spacing: 0.05em;
 }
+
+.year
+
+
+
 
 .courseDetail {
 
