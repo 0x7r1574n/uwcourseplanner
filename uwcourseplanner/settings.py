@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'degreemap',
         'USER': MYSQL['USER'],
         'PASSWORD': MYSQL['PASSWORD'],
-        'HOST': 'localhost',
+        'HOST': 'grouponedb.cdaxguixiect.us-west-2.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
