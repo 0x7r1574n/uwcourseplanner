@@ -134,5 +134,5 @@ def rest_course_detail(request, pk):
 def rest_core_list(request):
     if request.method == 'GET':
         cores = Core.objects.get_queryset()
-        serializer = CourseSerializer(cores, many=True)
+        serializer = CoreSerializer(cores, many=True)
         return Response(serializer.data)
