@@ -15,7 +15,7 @@ def get_courses(courses, year, quarter):
     return courses.filter(year=year).filter(quarter=quarter)
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/planner/accounts/login/')
 def course_list(request):
     curr_user = request.user.id
     courses = Course.objects.filter(user=curr_user)
@@ -33,7 +33,7 @@ def course_list(request):
     return render(request, 'planner/course_list.html', context)
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/planner/accounts/login/')
 def course_new(request):
     error = ''
     if request.method == "POST":
@@ -86,14 +86,14 @@ def course_new(request):
     return render(request, 'planner/course_edit.html', {'form': form, 'error': error})
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/planner/accounts/login/')
 def course_remove(request, pk):
     course = get_object_or_404(Course, pk=pk)
     course.delete()
     return redirect('planner.views.course_list')
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/planner/accounts/login/')
 def course_detail(request, pk):
     course = get_object_or_404(Course, pk=pk)
     if request.POST.get('delete'):
@@ -102,7 +102,7 @@ def course_detail(request, pk):
     return render(request, 'planner/course_detail.html', {'course': course})
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/planner/accounts/login/')
 @api_view(['GET', 'POST'])
 def rest_course_list(request):
     if request.method == 'GET':
@@ -118,7 +118,7 @@ def rest_course_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/planner/accounts/login/')
 @api_view(['GET', 'DELETE'])
 def rest_course_detail(request, pk):
     try:
@@ -133,7 +133,7 @@ def rest_course_detail(request, pk):
         return Response(serializer.data)
 
 
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='/planner/accounts/login/')
 @api_view(['GET'])
 def rest_core_list(request):
     if request.method == 'GET':
