@@ -131,6 +131,11 @@ a:hover {
 
 .courseList {
     float: left;
+    width: 80%
+}
+
+.quarterTitle {
+
 }
 
 .courseEntry {
