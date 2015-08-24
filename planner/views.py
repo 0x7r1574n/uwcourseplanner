@@ -48,6 +48,11 @@ def course_new(request):
             master = Master.objects.filter(fullname=course.fullname)
             # check if class exists
             if len(master) != 0:
+                # check if is duplicating a class in the same quarter
+                if len(courses.filter(fullname=course.fullname, year=course.year, quarter=course.quarter)) > 0:
+                    form = CourseForm()
+                    error = 'Class already taken.'
+                    return render(request, 'planner/course_edit.html', {'form': form, 'error': error})
                 for core in cores:
                     # check if is adding a core and has a prereq
                     if core.fullname == course.fullname and core.prereq != '':
