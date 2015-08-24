@@ -46,6 +46,7 @@ def course_new(request):
             courses = Course.objects.filter(user=request.user.id)
             cores = Core.objects.get_queryset()
             master = Master.objects.filter(fullname=course.fullname)
+            # check if class exists
             if len(master) != 0:
                 for core in cores:
                     # check if is adding a core and has a prereq
@@ -65,7 +66,7 @@ def course_new(request):
                             error = 'Prerequisite not fulfilled.'
                             return render(request, 'planner/course_edit.html', {'form': form, 'error': error})
                     # if not core or is core but no prereqs (add the class)
-                    else:
+                    elif core.prereq == '' or len(cores.objects.filter(fullname=course.fullname)) == 0:
                         course.dept = master[0].dept
                         course.number = master[0].number
                         course.title = master[0].title
@@ -78,7 +79,6 @@ def course_new(request):
             return redirect('planner.views.course_detail', pk=course.pk)
     else:
         form = CourseForm()
-        error = 'Not a POST request.'
     return render(request, 'planner/course_edit.html', {'form': form, 'error': error})
 
 
