@@ -4,6 +4,7 @@
     {% if form.errors %}
     <p>Invalid input.</p>
     {% endif %}
+    <span class="errors">{{ error }}</span>
 	<p>Add a Course</p>
 	<form method="POST">{% csrf_token %}
 		{{ form.as_p }}
