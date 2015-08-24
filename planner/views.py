@@ -129,11 +129,10 @@ def rest_course_detail(request, pk):
         return Response(serializer.data)
 
 
-class RestCoreList(generics.ListCreateAPIView):
-    queryset = Core.objects.all()
-    serializer_class = CoreSerializer
-
-
-class RestCoreDetail(generics.RetrieveDestroyAPIView):
-    queryset = Core.objects.all()
-    serializer_class = CoreSerializer
+@login_required(login_url='/accounts/login/')
+@api_view(['GET'])
+def rest_core_list(request):
+    if request.method == 'GET':
+        cores = Core.objects.get_queryset()
+        serializer = CourseSerializer(cores, many=True)
+        return Response(serializer.data)
