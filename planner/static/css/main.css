@@ -85,6 +85,11 @@ a:hover {
     color: #ED1C24;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
 .hello {
     float: right;
 
@@ -132,11 +137,20 @@ a.pageTitleLink {
 }
 
 .coreListTitle {
-
+    font-size: 0.75em;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    line-height: 1em;
+    margin-bottom: 1.5em;
 }
 
 .coreListItem {
-
+    list-style-type: none;
+    text-transform: uppercase;
+    font-size: 0.75em;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    line-height: 2em;
 }
 
 .courseList {
