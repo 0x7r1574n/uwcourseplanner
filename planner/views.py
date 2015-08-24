@@ -63,6 +63,7 @@ def course_new(request):
                         if not fulfilled:
                             form = CourseForm()
                             error = 'Prerequisite not fulfilled.'
+                            return render(request, 'planner/course_edit.html', {'form': form, 'error': error})
                     # if not core or is core but no prereqs (add the class)
                     else:
                         course.dept = master[0].dept
