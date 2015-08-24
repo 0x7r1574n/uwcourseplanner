@@ -90,6 +90,10 @@ ul {
     padding: 0;
 }
 
+form {
+    padding: 1em;
+}
+
 /*
 input {
     background: #FE5F55;
@@ -133,6 +137,7 @@ a.pageTitleLink {
 }
 
 .addCourse {
+    font-size: 1.25em;
     padding-left: 2em;
 }
 
@@ -143,10 +148,13 @@ a.pageTitleLink {
 .sidebar {
     float: right;
     margin-top: 1em;
-    margin-right: 3em;
+    padding: 2em;
+    color: #FCFCFC;
+    background-color: #16302B;
 }
 
 .coreListTitle {
+    color: #FE5F55;
     font-size: 0.75em;
     font-weight: 900;
     letter-spacing: 0.25em;
