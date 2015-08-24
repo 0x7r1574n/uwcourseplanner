@@ -36,6 +36,7 @@ def course_list(request):
 
 @login_required(login_url='/accounts/login/')
 def course_new(request):
+    error = ''
     if request.method == "POST":
         form = CourseForm(request.POST)
         if form.is_valid():
@@ -50,9 +51,9 @@ def course_new(request):
                     # check if is adding a core and has a prereq
                     if core.fullname == course.fullname and core.prereq != '':
                         fulfilled = False
-                        for course in courses:
+                        for taken in courses:
                             # check if user has prereq
-                            if course.fullname == core.prereq:
+                            if taken.fullname == core.prereq:
                                 fulfilled = True
                                 course.dept = master[0].dept
                                 course.number = master[0].number
@@ -61,6 +62,7 @@ def course_new(request):
                                 course.save()
                         if not fulfilled:
                             form = CourseForm()
+                            error = 'Prerequisite not fulfilled.'
                     # if not core or is core but no prereqs (add the class)
                     else:
                         course.dept = master[0].dept
@@ -70,11 +72,13 @@ def course_new(request):
                         course.save()
             else:
                 form = CourseForm()
-                return render(request, 'planner/course_edit.html', {'form': form})
+                error = 'Course not found.'
+                return render(request, 'planner/course_edit.html', {'form': form, 'error': error})
             return redirect('planner.views.course_detail', pk=course.pk)
     else:
         form = CourseForm()
-    return render(request, 'planner/course_edit.html', {'form': form})
+        error = 'Not a POST request.'
+    return render(request, 'planner/course_edit.html', {'form': form, 'error': error})
 
 
 @login_required(login_url='/accounts/login/')
