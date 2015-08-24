@@ -93,7 +93,9 @@ a:hover {
 .topBar {
     background-color: #16302B;
     padding: 1em;
-    margin-bottom: 3em;
+    margin-bottom: -1px;
+    border-bottom: 0.5em solid;
+    border-color: #FE5F55;
 }
 
 .pageTitle {
@@ -103,6 +105,10 @@ a:hover {
     font-size: 1.5em;
     letter-spacing: 0;
     margin: 0;
+}
+
+.pageTitle.pageTitleLink {
+
 }
 
 .loginForm {
@@ -136,7 +142,7 @@ a:hover {
 }
 
 .year {
-    margin-bottom: 2em;
+    margin-bottom: 3em;
     border-top: 1px solid;
     border-color: #FE5F55;
     padding-top: 1em;
@@ -144,8 +150,9 @@ a:hover {
 
 .quarterTitle {
     font-size: 0.75em;
-    font-weight: 100;
+    font-weight: 400;
     letter-spacing: 0.25em;
+    line-height: 1em;
 }
 
 .courseEntry {
@@ -153,9 +160,10 @@ a:hover {
 }
 
 .courseEntryTitle {
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 900;
     letter-spacing: 0.05em;
+    line-height: 1em;
 }
 
 .year

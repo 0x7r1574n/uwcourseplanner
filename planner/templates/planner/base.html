@@ -18,7 +18,7 @@
 	</head>
 	<body>
         <div class="topBar">
-            <h1 class="pageTitle"><a href="/">UW Interaction Design Curriculum Planner</a></h1>
+            <h1 class="pageTitle"><a class="pageTitleLink" href="/">UW Interaction Design Curriculum Planner</a></h1>
             {% if user.is_authenticated %}
                 <a class="addCourse" href="{% url "course_new" %}">Add a Course</a>
                 <p class="hello">Hello {{ user.username }} <a href="{% url "django.contrib.auth.views.logout" %}">Log out</a></p>
