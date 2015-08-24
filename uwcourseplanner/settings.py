@@ -85,7 +85,7 @@ DATABASES = {
         'USER': MYSQL['USER'],
         'PASSWORD': MYSQL['PASSWORD'],
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3306',
     }
 }
 
